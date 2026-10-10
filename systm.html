@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 18th Birthday ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;600&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fff0f3;
+  color: #743849;
+  text-align: center;
+}
+
+.screen {
+  min-height: 100vh;
+  padding: 35px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 { font-size: clamp(2rem, 7vw, 3.5rem); }
+
+.teddy { font-size: 90px; margin: 10px; }
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 13px 28px;
+  margin: 8px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform .25s;
+}
+
+#yes {
+  background: #e75480;
+  color: white;
+  font-weight: 600;
+}
+
+#no {
+  background: white;
+  color: #743849;
+  border: 1px solid #f1bfd0;
+}
+
+#birthday { display: none; }
+
+.photo {
+  width: min(260px, 80vw);
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 5px solid white;
+  box-shadow: 0 8px 30px #d889a655;
+}
+
+.card {
+  max-width: 600px;
+  background: #fffaf8;
+  padding: 25px;
+  margin: 18px auto;
+  border-radius: 22px;
+  box-shadow: 0 8px 30px #d889a633;
+  line-height: 1.9;
+}
+
+.love-line {
+  background: #fff0f3;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 7px 0;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: floatUp 5s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  to { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+
+#letter { display: none; }
+
+.small { font-size: 14px; color: #a16a7b; }
+</style>
+</head>
+
+<body>
+
+<section class="screen" id="question">
+  <div class="teddy">🧸💗</div>
+  <h1>Do you love me?</h1>
+  <p>Think carefully, madam! 🥹💕</p>
+  <div>
+    <button id="yes" onclick="showBirthday()">YES 💖</button>
+    <button id="no" onclick="sayNo()">NO 🙈</button>
+  </div>
+  <p class="small" id="hint">Choose wisely, hehe! ♡</p>
+</section>
+
+<section class="screen" id="birthday">
+  <div style="font-size:65px">🎂🎀</div>
+  <p>MY FAVOURITE PERSON'S SPECIAL DAY</p>
+  <h1>Happy 18th Birthday! 💗</h1>
+  <h2>Happy Birthday, Kukudu 🌻</h2>
+
+  <!-- Upload your photo as kukudu-childhood.png in this same repository folder -->
+  <img class="photo" src="kukudu-childhood.png"
+       alt="A special childhood memory"
+       onerror="this.style.display='none'">
+
+  <p>One childhood picture, a million precious memories. ♡</p>
+
+  <div class="card">
+    <h2>A little surprise for you 💌</h2>
+    <p>You make ordinary days feel special.</p>
+    <button id="yes" onclick="openLetter()">Open Your Letter 💌</button>
+  </div>
+
+  <div id="letter" class="card">
+    <h2>To my Kukudu, ❤️</h2>
+
+    <p>
+      Happy 18th birthday to the most special person in my life.
+      I hope your new chapter brings you happiness, confidence,
+      beautiful memories and everything your heart wishes for.
+      Thank you for being yourself and for bringing so much happiness
+      into my life. I love our little moments, our silly conversations
+      and all the memories we keep making together.
+    </p>
+
+    <h3>23 little reasons you are special to me 🌷</h3>
+    <div id="reasons"></div>
+
+    <p>
+      I'll always remember our Navratri memories and the little moments
+      that became big memories for me. And that 10 km run without a break?
+      One more reason to be proud of you! 🏃‍♀️💕
+    </p>
+
+    <p>
+      And of course, my madam grammar corrector 😂❤️
+      Even my mistakes get special attention from you!
+    </p>
+
+    <p>
+      Keep smiling, keep shining and never stop being the wonderful
+      person you are. You deserve a beautiful year ahead.
+    </p>
+
+    <h2>Happy Birthday, Kukudu! 🎂🌻</h2>
+    <p>With lots of love,</p>
+    <h2>Your Dev ♡</h2>
+  </div>
+
+  <p class="small">Made with love, just for you ✨</p>
+</section>
+
+<script>
+let noClicks = 0;
+let yesScale = 1;
+let noScale = 1;
+
+function sayNo() {
+  noClicks++;
+
+  yesScale = Math.min(yesScale + 0.18, 2.5);
+  noScale = Math.max(noScale - 0.12, 0.35);
+
+  document.getElementById("yes").style.transform =
+    `scale(${yesScale})`;
+
+  const no = document.getElementById("no");
+  no.style.transform = `scale(${noScale})`;
+
+  const hints = [
+    "Are you sure? 🥺",
+    "Ek baar aur soch lo! 💗",
+    "Please reconsider 🙈",
+    "YES is looking cuter now! 💖",
+    "Hehe, almost there! 🌷",
+    "One last chance! 🧸",
+    "Okay, now choose YES! 💕"
+  ];
+
+  document.getElementById("hint").textContent =
+    hints[Math.min(noClicks - 1, hints.length - 1)];
+
+  if (noClicks >= 7) {
+    no.textContent = "Try YES 💗";
+  }
+}
+
+function showBirthday() {
+  document.getElementById("question").style.display = "none";
+  document.getElementById("birthday").style.display = "flex";
+  document.getElementById("birthday").style.flexDirection = "column";
+  document.getElementById("birthday").style.justifyContent = "center";
+  window.scrollTo(0, 0);
+  makeHearts();
+}
+
+function openLetter() {
+  const letter = document.getElementById("letter");
+  letter.style.display = "block";
+  letter.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+const lines = [
+  "Your smile can make my day better. 💗",
+  "You make little moments feel special.",
+  "I love our silly conversations.",
+  "You are someone I can make memories with.",
+  "You bring happiness into ordinary days.",
+  "I love how we laugh together.",
+  "You make our memories unforgettable.",
+  "Your happiness matters to me.",
+  "I love your cute little expressions.",
+  "You make me appreciate the small things.",
+  "I love the way we tease each other.",
+  "You make every celebration more meaningful.",
+  "I love our inside jokes.",
+  "You inspire me to keep growing.",
+  "I love learning new things about you.",
+  "You make me smile without even trying.",
+  "I cherish our Navratri memories.",
+  "I love our random conversations.",
+  "You deserve kindness and happiness.",
+  "I am grateful for the time we share.",
+  "You are wonderfully, uniquely you.",
+  "I hope this year brings you beautiful things.",
+  "And today, I celebrate YOU! Happy birthday! 🌻"
+];
+
+document.getElementById("reasons").innerHTML =
+  lines.map((line, i) =>
+    `<div class="love-line"><b>${i + 1}.</b> ${line}</div>`
+  ).join("");
+
+function makeHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = ["💗", "💕", "🌸", "✨", "🌻"][
+      Math.floor(Math.random() * 5)
+    ];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (18 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }, 650);
+}
+</script>
+
+</body>
+</html>
